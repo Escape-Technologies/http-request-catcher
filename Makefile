@@ -6,7 +6,7 @@ ENTRY	= cmd/http-request-catcher/main.go
 all: $(NAME)
 
 $(NAME):
-	go build -o $(NAME) $(SRCS) -w -s -ldflags "-X main.Version=`git describe --tags` -X main.BuildTime=`date -u +%Y-%m-%dT%H:%M:%SZ` -X main.GitHash=`git rev-parse --short HEAD` -X main.GitBranch=`git rev-parse --abbrev-ref HEAD`"
+	go build -o $(NAME) $(SRCS) -ldflags "-w -s -X main.Version=`git describe --tags` -X main.BuildTime=`date -u +%Y-%m-%dT%H:%M:%SZ` -X main.GitHash=`git rev-parse --short HEAD` -X main.GitBranch=`git rev-parse --abbrev-ref HEAD`"
 
 .PHONY: clean
 clean:
