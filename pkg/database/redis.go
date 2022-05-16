@@ -29,6 +29,7 @@ func redisConnect(host string, port string, password string, db int) *redis.Clie
 	})
 
 	if _, err := rdb.Ping().Result(); err != nil {
+		fmt.Println("Error connecting to redis server: " + err.Error())
 		panic(err)
 	}
 
