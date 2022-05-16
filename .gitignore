@@ -1,2 +1,3 @@
 go.sum
 http-request-catcher
+!cmd/*

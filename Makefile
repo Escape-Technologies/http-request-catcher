@@ -1,12 +1,18 @@
-NAME	= http-request-catcher
-DEL		= /bin/rm
-ENTRY	= cmd/http-request-catcher/main.go
+NAME	:= http-request-catcher
+DEL		:= /bin/rm
+ENTRY   := cmd/http-request-catcher/main.go
+
+
+GIT_VERSION	:= $(shell git describe --tags --abbrev=0)
+BUILD_TIME	:= $(shell date -u +%Y-%m-%dT%H:%M:%S)
+GIT_HASH	:= $(shell git rev-parse --short HEAD)
+GIT_BRANCH	:= $(shell git rev-parse --abbrev-ref HEAD)
 
 .PHONY: all
 all: $(NAME)
 
 $(NAME):
-	go build -o $(NAME) $(SRCS) -ldflags "-w -s -X main.Version=`git describe --tags` -X main.BuildTime=`date -u +%Y-%m-%dT%H:%M:%SZ` -X main.GitHash=`git rev-parse --short HEAD` -X main.GitBranch=`git rev-parse --abbrev-ref HEAD`"
+	go build -ldflags "-X main.Version=$(GIT_VERSION) -X main.BuildTime=$(BUILD_TIME) -X main.GitHash=$(GIT_HASH) -X main.GitBranch=$(GIT_BRANCH)" -o $(NAME) $(ENTRY)
 
 .PHONY: clean
 clean:
