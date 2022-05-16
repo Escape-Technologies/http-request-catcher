@@ -24,10 +24,10 @@ func StoreRequest(r *api.BucketEntry) {
 	}
 }
 
-func getBucketRedis(id string) []api.BucketEntry {
+func getBucketRedis(id string) api.Bucket {
 	data := Db.HGetAll(id)
 
-	entries := make([]api.BucketEntry, 0)
+	entries := make(api.Bucket, 0)
 	for _, entry := range data.Val() {
 		jsonEntry := api.BucketEntry{}
 
@@ -38,7 +38,7 @@ func getBucketRedis(id string) []api.BucketEntry {
 	return entries
 }
 
-func GetBucket(id string) []api.BucketEntry {
+func GetBucket(id string) api.Bucket {
 	switch Provider {
 	case api.REDIS:
 		return getBucketRedis(id)

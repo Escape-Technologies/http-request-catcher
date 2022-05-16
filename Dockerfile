@@ -2,19 +2,31 @@ ARG GO_VERSION=1.18
 
 FROM golang:${GO_VERSION}-alpine as builder
 
-ENV APP_HOME /go/src/http-request-catcher
-WORKDIR $APP_HOME
+WORKDIR /go/src/http-request-catcher
 
-COPY . .
+RUN apk add make git --quiet
 
-RUN ls -lar
+COPY Makefile go.mod go.sum ./
+
 RUN go mod download
 RUN go mod verify
-RUN go build -o cmd/http-request-catcher/main.go
+
+COPY .git .git
+COPY api api
+COPY cmd cmd
+COPY internal internal
+COPY pkg pkg
+
+RUN make
 
 FROM alpine:3.10
 
+ENV GIN_MODE release
 
-COPY --from=builder /go/src/http-request-catcher .
+WORKDIR /go/src/http-request-catcher
+
+COPY --from=builder /go/src/http-request-catcher/http-request-catcher .
+
+RUN chmod +x ./http-request-catcher
 
 CMD [ "./http-request-catcher" ]

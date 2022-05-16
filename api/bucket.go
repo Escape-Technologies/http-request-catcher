@@ -10,3 +10,5 @@ type BucketEntry struct {
 	Headers  map[string]string `json:"headers"`
 	Body     string            `json:"data"`
 }
+
+type Bucket []BucketEntry
