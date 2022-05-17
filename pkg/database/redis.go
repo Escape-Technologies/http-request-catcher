@@ -7,16 +7,7 @@ import (
 	"github.com/Escape-Technologies/http-request-catcher/api"
 	"github.com/Escape-Technologies/http-request-catcher/internal"
 	"github.com/go-redis/redis"
-	"github.com/nitishm/go-rejson"
 )
-
-func redisJsonSetup(client *redis.Client) {
-	rh := rejson.NewReJSONHandler()
-
-	rh.SetGoRedisClient(client)
-
-	DbHandler = rh
-}
 
 func redisConnect(host string, port string, password string, db int) *redis.Client {
 	fmt.Println("Connecting to redis server: " + host + ":" + port)
@@ -34,8 +25,6 @@ func redisConnect(host string, port string, password string, db int) *redis.Clie
 	}
 
 	fmt.Println("Connected to redis server: " + host + ":" + port)
-
-	redisJsonSetup(rdb)
 
 	return rdb
 }

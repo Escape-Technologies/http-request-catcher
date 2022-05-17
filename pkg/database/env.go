@@ -4,13 +4,11 @@ import (
 	"github.com/Escape-Technologies/http-request-catcher/api"
 	"github.com/Escape-Technologies/http-request-catcher/internal"
 	"github.com/go-redis/redis"
-	"github.com/nitishm/go-rejson"
 )
 
 var (
-	Provider  api.DatabaseProvider
-	Db        *redis.Client
-	DbHandler *rejson.Handler
+	Provider api.DatabaseProvider
+	Db       *redis.Client
 )
 
 func Connect(provider api.DatabaseProvider) {

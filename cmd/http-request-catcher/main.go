@@ -6,14 +6,14 @@ import (
 	"github.com/Escape-Technologies/http-request-catcher/api"
 	"github.com/Escape-Technologies/http-request-catcher/internal"
 	"github.com/Escape-Technologies/http-request-catcher/pkg/database"
-	"github.com/Escape-Technologies/http-request-catcher/pkg/server"
+	server "github.com/Escape-Technologies/http-request-catcher/pkg/http"
 )
 
 var (
-	Version   string
-	BuildTime string
-	GitHash   string
-	GitBranch string
+	Version   string = "0.0.1"
+	BuildTime string = "unknown"
+	GitHash   string = "unknown"
+	GitBranch string = "unknown"
 )
 
 func main() {
