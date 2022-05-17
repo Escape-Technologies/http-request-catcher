@@ -1,5 +1,6 @@
 package api
 
+// Represent a request entry.
 type BucketEntry struct {
 	Id       string            `json:"id"`
 	BucketId string            `json:"bucket_id"`
@@ -11,4 +12,5 @@ type BucketEntry struct {
 	Body     string            `json:"data"`
 }
 
+// Represent an array of request entries.
 type Bucket []BucketEntry

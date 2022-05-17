@@ -10,6 +10,7 @@ var (
 	DefaultMessage = "H@k3d!"
 )
 
+// Create an entry for the current context.
 func CreateBucketEntry(c *gin.Context) {
 	requestData := schema.FormatBucketEntry(c)
 	if requestData == nil {

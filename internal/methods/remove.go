@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Remove a whole bucket.
 func RemoveBucket(c *gin.Context) {
 	count := database.DeleteBucket(c.Param("bucket_id"))
 

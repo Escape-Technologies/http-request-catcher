@@ -4,6 +4,7 @@ import (
 	"github.com/Escape-Technologies/http-request-catcher/api"
 )
 
+// Stores a request in a bucket.
 func StoreRequest(r *api.BucketEntry) {
 	switch Provider {
 	case api.REDIS:
@@ -13,6 +14,7 @@ func StoreRequest(r *api.BucketEntry) {
 	}
 }
 
+// Returns a bucket.
 func GetBucket(id string) api.Bucket {
 	switch Provider {
 	case api.REDIS:
@@ -22,6 +24,7 @@ func GetBucket(id string) api.Bucket {
 	}
 }
 
+// Deletes a bucket and all its entries.
 func DeleteBucket(id string) int {
 	switch Provider {
 	case api.REDIS:

@@ -19,6 +19,7 @@ func _formatHeaders(headers http.Header) map[string]string {
 	return ret
 }
 
+// Format an entry for the database from the current context.
 func FormatBucketEntry(c *gin.Context) *api.BucketEntry {
 	body, err := c.GetRawData()
 	if err != nil {

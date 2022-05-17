@@ -9,6 +9,7 @@ import (
 	"github.com/go-redis/redis"
 )
 
+// Connect to a redis DB.
 func redisConnect(host string, port string, password string, db int) *redis.Client {
 	fmt.Println("Connecting to redis server: " + host + ":" + port)
 	fmt.Printf("Connecting to redis database: %d\n", db)
@@ -29,6 +30,7 @@ func redisConnect(host string, port string, password string, db int) *redis.Clie
 	return rdb
 }
 
+// Store a bucket entry in a redis database.
 func storeRequestRedis(r *api.BucketEntry) {
 	packedEntry, _ := json.Marshal(r)
 
@@ -36,6 +38,7 @@ func storeRequestRedis(r *api.BucketEntry) {
 	_ = Db.Expire(r.BucketId, internal.REQUEST_EXPIRATION_TIME)
 }
 
+// Get a bucket entry from a redis database.
 func getBucketRedis(id string) api.Bucket {
 	data := Db.HGetAll(id)
 
@@ -50,6 +53,7 @@ func getBucketRedis(id string) api.Bucket {
 	return entries
 }
 
+// Remove a bucket from a redis database.
 func deleteBucketRedis(id string) int {
 	count := 0
 	fields := Db.HGetAll(id)

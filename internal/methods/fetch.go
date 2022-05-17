@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Fetch a specific bucket.
 func FetchBucket(c *gin.Context) {
 	bucket := database.GetBucket(c.Param("bucket_id"))
 

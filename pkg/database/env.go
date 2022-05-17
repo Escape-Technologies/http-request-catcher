@@ -11,6 +11,8 @@ var (
 	Db       *redis.Client
 )
 
+// Connect to the database.
+// Use provider strategy.
 func Connect(provider api.DatabaseProvider) {
 	Provider = provider
 
