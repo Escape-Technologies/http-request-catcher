@@ -30,7 +30,6 @@ func redisConnect(host string, port string, password string, db int) *redis.Clie
 }
 
 func storeRequestRedis(r *api.BucketEntry) {
-
 	packedEntry, _ := json.Marshal(r)
 
 	_ = Db.HSet(r.BucketId, r.Id, packedEntry)

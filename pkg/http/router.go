@@ -14,7 +14,6 @@ func CreateRouter() *gin.Engine {
 }
 
 func SetupRouter(r *gin.Engine) {
-
 	r.GET("/:bucket_id", methods.FetchBucket)
 	r.DELETE("/:bucket_id", methods.RemoveBucket)
 
