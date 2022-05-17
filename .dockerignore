@@ -3,3 +3,5 @@ test
 http-request-catcher
 !cmd/http-request-catcher
 Dockerfile
+dist
+.github

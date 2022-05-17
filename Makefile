@@ -29,3 +29,7 @@ run:
 test:
 	golangci-lint run
 	gocyclo -over 15 $(ENTRY)
+
+.PHONY: release
+release:
+	goreleaser release --snapshot --rm-dist
