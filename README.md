@@ -1,7 +1,8 @@
 # http-request-catcher
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/Escape-Technologies/http-request-catcher.svg)](https://pkg.go.dev/github.com/Escape-Technologies/http-request-catcher)
-Build status
+[![CI](https://github.com/Escape-Technologies/http-request-catcher/actions/workflows/ci.yaml/badge.svg)](https://github.com/Escape-Technologies/http-request-catcher/actions/workflows/ci.yaml)
+[![CD](https://github.com/Escape-Technologies/http-request-catcher/actions/workflows/cd.yaml/badge.svg)](https://github.com/Escape-Technologies/http-request-catcher/actions/workflows/cd.yaml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Escape-Technologies/http-request-catcher)](https://goreportcard.com/report/github.com/Escape-Technologies/http-request-catcher)
 [![codecov](https://codecov.io/gh/Escape-Technologies/http-request-catcher/branch/main/graph/badge.svg)](https://codecov.io/gh/Escape-Technologies/http-request-catcher)
 
