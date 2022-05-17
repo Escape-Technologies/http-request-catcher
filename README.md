@@ -8,10 +8,10 @@ Build status
 ## Deployement
 
 ```bash
-CATCHER_PORT            = "8080"
+CATCHER_PORT            = 8080
 REDIS_HOST              = "localhost"
 REDIS_PORT              = 6379
-REDIS_PWD               = ""
+REDIS_PASSWORD          = ""
 REDIS_DB                = 0
 REQUEST_EXPIRATION_TIME = 120
 ```

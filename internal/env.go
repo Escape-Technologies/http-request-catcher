@@ -21,10 +21,10 @@ func _atoi(value string) int {
 }
 
 var (
-	CATCHER_PORT            = _getEnv("CATCHER_PORT", "8080")
+	CATCHER_PORT            = _atoi(_getEnv("CATCHER_PORT", "8080"))
 	REDIS_HOST              = _getEnv("REDIS_HOST", "localhost")
 	REDIS_PORT              = _getEnv("REDIS_PORT", "6379")
-	REDIS_PWD               = _getEnv("REDIS_PWD", "")
+	REDIS_PWD               = _getEnv("REDIS_PASSWORD", "")
 	REDIS_DB                = _atoi(_getEnv("REDIS_DB", "0"))
 	REQUEST_EXPIRATION_TIME = time.Second * time.Duration(_atoi(_getEnv("REQUEST_EXPIRATION_TIME", "120")))
 )

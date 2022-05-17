@@ -21,10 +21,12 @@ func SetupRouter(r *gin.Engine) {
 	r.Any("/:bucket_id/:request_id", methods.CreateBucketEntry)
 }
 
-func StartRouter(r *gin.Engine, port string) {
-	fmt.Println("Starting server on port: " + port)
+func StartRouter(r *gin.Engine, port int) {
 
-	if err := r.Run(":" + port); err != nil {
+	formattedPort := fmt.Sprintf(":%d", port)
+	fmt.Printf("Starting server on port: %s\n", formattedPort)
+
+	if err := r.Run(formattedPort); err != nil {
 		panic(err)
 	}
 }
