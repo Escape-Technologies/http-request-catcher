@@ -66,8 +66,7 @@ ENTRY_EXPIRATION_TIME   = 120
 ### Using docker-compose
 
 ```bash
-# No .env file
-CATCHER_PORT=8080 REDIS_PASSWORD=any docker-compose up --build
+make compose
 ```
 
 ## Installation

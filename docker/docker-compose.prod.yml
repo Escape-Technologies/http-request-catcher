@@ -1,0 +1,28 @@
+version: '3'
+
+networks:
+  net-redis:
+
+services:
+  redis:
+    container_name: redis-http-request-catcher
+    image: bitnami/redis:latest
+    networks:
+      - net-redis
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-root}
+    restart: unless-stopped
+
+  http-request-catcher:
+    container_name: http-request-catcher
+    image: escapetech/http-request-catcher:latest
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-root}
+    networks:
+      - net-redis
+    ports:
+      - "${CATCHER_PORT:-8080}:${CATCHER_PORT:-8080}"
+    restart: unless-stopped

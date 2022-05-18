@@ -36,4 +36,8 @@ release:
 
 .PHONY: compose
 compose:
-	docker-compose up --build
+	docker-compose -f docker/docker-compose.prod.yml up --build
+
+.PHONY: compose-dev
+compose-dev:
+	docker-compose -f docker/docker-compose.dev.yml up --build

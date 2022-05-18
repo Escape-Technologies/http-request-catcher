@@ -10,7 +10,7 @@ services:
     networks:
       - net-redis
     environment:
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-root}
     restart: unless-stopped
 
   http-request-catcher:
@@ -18,14 +18,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # image: escapetech/http-request-catcher:latest
     depends_on:
       - redis
     environment:
       - REDIS_HOST=redis
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-root}
     networks:
       - net-redis
     ports:
-      - "${CATCHER_PORT}:${CATCHER_PORT}"
+      - "${CATCHER_PORT:-8080}:${CATCHER_PORT:-8080}"
     restart: unless-stopped
