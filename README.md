@@ -68,4 +68,5 @@ CATCHER_PORT=8080 REDIS_PASSWORD=any docker-compose up --build
 
 ```bash
 docker run --name redis -p 6379:6379 -e ALLOW_EMPTY_PASSWORD=yes bitnami/redis:latest
+make run
 ```
