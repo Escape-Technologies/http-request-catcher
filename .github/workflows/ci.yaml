@@ -19,3 +19,34 @@ jobs:
         run: go mod download
       - name: Build
         run: make
+
+      - name: Lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.46.0
+
+  report:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+      - name: Install report card
+        run: |
+          git clone https://github.com/gojp/goreportcard.git
+          cd goreportcard
+          make install
+          go install ./cmd/goreportcard-cli
+          cd ..
+          rm -rf goreportcard
+      - name: Report
+        run: goreportcard-cli -v -t 100
+
+  report-card:
+    name: Report Card
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Request Report Update
+        run: |
+          curl -X POST -F "repo=github.com/$GITHUB_REPOSITORY" https://goreportcard.com/checks

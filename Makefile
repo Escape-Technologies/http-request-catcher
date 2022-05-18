@@ -33,3 +33,7 @@ test:
 .PHONY: release
 release:
 	goreleaser release --snapshot --rm-dist
+
+.PHONY: compose
+compose:
+	docker-compose up --build

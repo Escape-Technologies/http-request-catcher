@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  net-redis:
+
+services:
+  redis:
+    container_name: redis-http-request-catcher
+    image: bitnami/redis:latest
+    networks:
+      - net-redis
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    restart: unless-stopped
+
+  http-request-catcher:
+    container_name: http-request-catcher
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: escapetech/http-request-catcher:latest
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    networks:
+      - net-redis
+    ports:
+      - "${CATCHER_PORT}:${CATCHER_PORT}"
+    restart: unless-stopped
