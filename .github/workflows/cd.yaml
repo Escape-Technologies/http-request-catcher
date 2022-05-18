@@ -65,4 +65,4 @@ jobs:
     needs: docker-push
     steps:
       - name: Trigger deployment
-        run: 'curl ${{ secrets.DEPLOYMENT_URL }} -X POST -H "Authorization: ${{ secrets.DEPLOYMENT_SECRET }}"'
+        run: 'curl -s ${{ secrets.DEPLOYMENT_URL }} -X POST -H "Authorization: ${{ secrets.DEPLOYMENT_SECRET }}"'
