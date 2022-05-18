@@ -30,7 +30,7 @@ jobs:
 
   docker-push:
     name: Docker Push
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - name: Set up QEMU
@@ -57,3 +57,10 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Trigger deployment
+        run: curl ${{ secrets.DEPLOYMENT_URL }} -X POST -H "Authorization: ${{ secrets.DEPLOYMENT_SECRET }}"
