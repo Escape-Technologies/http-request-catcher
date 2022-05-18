@@ -54,6 +54,7 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: .
+          file: docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -61,6 +62,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-20.04
+    needs: docker-push
     steps:
       - name: Trigger deployment
-        run: curl ${{ secrets.DEPLOYMENT_URL }} -X POST -H "Authorization: ${{ secrets.DEPLOYMENT_SECRET }}"
+        run: 'curl ${{ secrets.DEPLOYMENT_URL }} -X POST -H "Authorization: ${{ secrets.DEPLOYMENT_SECRET }}"'
