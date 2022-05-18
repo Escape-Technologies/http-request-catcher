@@ -42,6 +42,14 @@
 }
 ```
 
+## API
+
+```text
+GET     /:bucket_id                 - Get all requests for bucket_id
+DELETE  /:bucket_id                 - Delete all requests for bucket_id
+any     /:bucket_id/:request_id     - Catch request into bucket_id
+```
+
 ## Options
 
 ```bash
