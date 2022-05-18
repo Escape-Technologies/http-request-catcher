@@ -35,7 +35,7 @@ func storeRequestRedis(r *api.BucketEntry) {
 	packedEntry, _ := json.Marshal(r)
 
 	_ = Db.HSet(r.BucketId, r.Id, packedEntry)
-	_ = Db.Expire(r.BucketId, internal.REQUEST_EXPIRATION_TIME)
+	_ = Db.Expire(r.BucketId, internal.ENTRY_EXPIRATION_TIME)
 }
 
 // Get a bucket entry from a redis database.

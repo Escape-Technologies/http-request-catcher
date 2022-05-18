@@ -8,6 +8,40 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/escapetech/http-request-catcher)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/escapetech/http-request-catcher)
 
+## Purpose
+
+- Example of caught http request data.
+
+```text
+{
+  "data": [
+    {
+      "id": "a",
+      "bucket_id": "aaa",
+      "method": "GET",
+      "path": "/aaa/a",
+      "ip": "172.20.0.1",
+      "time": "2022-05-18T08:34:21Z",
+      "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Connection": "keep-alive",
+        "Dnt": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0"
+      },
+      "data": ""
+    }
+  ],
+  "message": "Ok"
+}
+```
+
 ## Options
 
 ```bash
@@ -16,7 +50,7 @@ REDIS_HOST              = "localhost"
 REDIS_PORT              = 6379
 REDIS_PASSWORD          = ""
 REDIS_DB                = 0
-REQUEST_EXPIRATION_TIME = 120
+ENTRY_EXPIRATION_TIME   = 120
 ```
 
 ## Deployement
