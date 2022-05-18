@@ -16,8 +16,8 @@ services:
   http-request-catcher:
     container_name: http-request-catcher
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../
+      dockerfile: ./docker/Dockerfile
     depends_on:
       - redis
     environment:
