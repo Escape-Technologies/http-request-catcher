@@ -18,7 +18,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with: 
-          go-version: 1.18
+          go-version: 1.20
 
       - name: Create release on GitHub
         uses: goreleaser/goreleaser-action@v2
@@ -58,11 +58,3 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-20.04
-    needs: docker-push
-    steps:
-      - name: Trigger deployment
-        run: 'curl -s ${{ secrets.DEPLOYMENT_URL }} -X POST -H "Authorization: ${{ secrets.DEPLOYMENT_SECRET }}"'
