@@ -1,4 +1,4 @@
-ARG GO_VERSION=1.18
+ARG GO_VERSION=1.20
 
 FROM golang:${GO_VERSION}-alpine as builder
 
@@ -19,7 +19,7 @@ COPY pkg pkg
 
 RUN make
 
-FROM alpine:3.10
+FROM alpine:3.18
 
 ENV GIN_MODE release
 
