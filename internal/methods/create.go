@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var (
+const (
 	DefaultMessage = "H@k3d!"
 )
 
