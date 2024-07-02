@@ -10,14 +10,20 @@ import (
 )
 
 var (
-	Version   string = "0.0.1"
+	Version   string = "0.1.0"
 	BuildTime string = "unknown"
 	GitHash   string = "unknown"
 	GitBranch string = "unknown"
 )
 
 func main() {
-	fmt.Printf("Starting http-request-catcher %s@%s-%s (%s)\n", Version, GitHash, GitBranch, BuildTime)
+	fmt.Printf(
+		"Starting http-request-catcher %s@%s-%s (%s)\n",
+		Version,
+		GitHash,
+		GitBranch,
+		BuildTime,
+	)
 
 	r := server.CreateRouter()
 
