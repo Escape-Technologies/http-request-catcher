@@ -32,7 +32,7 @@ test:
 
 .PHONY: release
 release:
-	goreleaser release --snapshot --rm-dist
+	goreleaser release --snapshot --clean
 
 .PHONY: compose
 compose:
