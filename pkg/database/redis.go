@@ -3,19 +3,13 @@ package database
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 
 	"github.com/Escape-Technologies/http-request-catcher/api"
 	"github.com/Escape-Technologies/http-request-catcher/internal"
 	"github.com/go-redis/redis"
 )
 
-const (
-	redisConnectTimeout    = 60 * time.Second
-	redisConnectRetryDelay = time.Second
-)
-
-// Connect to a redis DB, retrying for up to redisConnectTimeout before panicking.
+// Connect to a redis DB.
 func redisConnect(host string, port string, password string, db int) *redis.Client {
 	fmt.Println("Connecting to redis server: " + host + ":" + port)
 	fmt.Printf("Connecting to redis database: %d\n", db)
@@ -26,20 +20,9 @@ func redisConnect(host string, port string, password string, db int) *redis.Clie
 		DB:       db,
 	})
 
-	// Redis often runs as a sidecar that starts after the catcher: wait for it instead of
-	// crashlooping on the first failed ping.
-	deadline := time.Now().Add(redisConnectTimeout)
-	for {
-		_, err := rdb.Ping().Result()
-		if err == nil {
-			break
-		}
-		if time.Now().After(deadline) {
-			fmt.Println("Error connecting to redis server: " + err.Error())
-			panic(err)
-		}
-		fmt.Println("Redis not ready, retrying: " + err.Error())
-		time.Sleep(redisConnectRetryDelay)
+	if _, err := rdb.Ping().Result(); err != nil {
+		fmt.Println("Error connecting to redis server: " + err.Error())
+		panic(err)
 	}
 
 	fmt.Println("Connected to redis server: " + host + ":" + port)
