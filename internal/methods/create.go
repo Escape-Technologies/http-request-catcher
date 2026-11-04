@@ -21,7 +21,8 @@ func CreateBucketEntry(c *gin.Context) {
 		return
 	}
 
-	go database.StoreRequest(requestData)
+	// Stored before answering, so a read right after the hit already sees it.
+	database.StoreRequest(requestData)
 
 	respondBasedOnAcceptHeader(c, 200, DefaultMessage)
 }
